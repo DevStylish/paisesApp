@@ -1,9 +1,66 @@
 <h2>Por País</h2>
 <hr>
-<input type="text" class="form-control" placeholder="Buscar ...">
+<input type="text" class="form-control" placeholder="Buscar ..." [(ngModel)]="pais" (keyup.enter)="buscarPais()">
 <hr>
-<h3>
-  Resultados Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae doloremque error ratione, voluptatem,
-  ipsam aliquid atque molestiae esse assumenda eaque iste repellat animi nihil odit? Dignissimos dolores iste
-  repellendus quidem?
-</h3>
+<div *ngIf="paises.length > 0; else standard" class="row">
+
+  <div class="col">
+
+    <table class="table table-hover">
+
+      <thead>
+
+        <tr>
+
+          <th> # </th>
+
+          <th> Bandera </th>
+
+          <th> Nombre </th>
+
+          <th> Población </th>
+
+          <th></th>
+
+        </tr>
+
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let pais of paises; let i = index"
+
+            class="animate__animated animate__fadeIn animate__faster">
+
+            <td> {{ i + 1 }} </td>
+
+            <td>
+
+                <img class="small-flag img-fluid" [src]="pais.flags.svg"  >
+
+            </td>
+
+            <td> {{ pais.capital }}, {{pais.name.common || pais.name.official }}</td>
+
+            <td>{{ pais.population | number }}</td>
+
+            <td>
+
+                <!-- <a [routerLink]="['/pais', pais.cioc]">Ver...</a> -->
+                <a href="#">Ver...</a>
+
+            </td>
+
+        </tr>
+
+    </tbody>
+
+    </table>
+  </div>
+</div>
+<ng-template #standard>
+  <h3>
+    Resultados Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae doloremque error ratione, voluptatem,
+    ipsam aliquid atque molestiae esse assumenda eaque iste repellat animi nihil odit? Dignissimos dolores iste
+    repellendus quidem?
+  </h3>  
+</ng-template>

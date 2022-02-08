@@ -1,7 +1,34 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { DetallesPaisComponent } from './pais/pages/detalles-pais/detalles-pais.component';
+import { PorPaisComponent } from './pais/pages/por-pais/por-pais.component';
+import { PorCapitalComponent } from './pais/pages/por-capital/por-capital.component';
+import { PorRegionComponent } from './pais/pages/por-region/por-region.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: PorPaisComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'region',
+    component: PorRegionComponent
+  },
+  {
+    path: 'capital',
+    component: PorCapitalComponent
+  },
+  {
+    path: 'pais/:id',
+    component: DetallesPaisComponent
+  },
+  {
+    path: '**',
+    redirectTo: ''
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -22,4 +22,22 @@ export class PaisService {
 
     return this.http.get<Pais[]>(url, {});
   }
+
+  buscarPaisByCIOC(paisCioc: string): Observable<Pais[]>{
+    let url = `${this.urlApi}/alpha/${paisCioc}`;
+
+    return this.http.get<Pais[]>(url, {});
+  }
+
+  buscarPaisPorRegion(region: string): Observable<Pais[]>{
+    let url = `${this.urlApi}/region/${region}`;
+
+    return this.http.get<Pais[]>(url, {});
+  }
+
+  buscarPaisPorCapital(capital: string): Observable<Pais[]>{
+    let url = `${this.urlApi}/capital/${capital}`;
+
+    return this.http.get<Pais[]>(url, {});
+  }
 }

@@ -11,15 +11,31 @@ export class PorPaisComponent implements OnInit {
 
   pais = "";
   paises: Pais[] = [];
+  ultPaises: Pais[] = [];
 
   constructor(private paisService: PaisService) { }
 
   ngOnInit(): void { }
 
-  buscarPais() {
-    this.paisService.buscarPaises(this.pais).subscribe((objPaises) => {
-      this.paises = objPaises;
-    });
+  obtenerPaises() {
+    if(this.pais !== ""){
+      this.paisService.buscarPaises(this.pais).subscribe((objPaises) => {
+        if(objPaises.length > 10){
+          this.paises = objPaises.slice(0,9);
+        }else{
+          this.paises = objPaises;
+        }
+      });
+    }
   }
 
+  detallesPais(){
+    
+  }
+
+  mostrarPaises(){
+    this.paisService.buscarPaises(this.pais).subscribe((objPaises) => {
+      this.ultPaises = objPaises;
+    });
+  }
 }

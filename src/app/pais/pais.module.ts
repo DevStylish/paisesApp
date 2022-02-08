@@ -4,13 +4,16 @@ import { FormsModule } from '@angular/forms';
 
 import { PorPaisComponent } from './pages/por-pais/por-pais.component';
 import { DetallesPaisComponent } from './pages/detalles-pais/detalles-pais.component';
-
+import { PorCapitalComponent } from './pages/por-capital/por-capital.component';
+import { PorRegionComponent } from './pages/por-region/por-region.component';
 
 
 @NgModule({
   declarations: [
     PorPaisComponent,
-    DetallesPaisComponent
+    DetallesPaisComponent,
+    PorCapitalComponent,
+    PorRegionComponent,
   ],
   imports: [
     CommonModule,
@@ -18,7 +21,9 @@ import { DetallesPaisComponent } from './pages/detalles-pais/detalles-pais.compo
   ],
   exports: [
     PorPaisComponent,
-    DetallesPaisComponent
+    DetallesPaisComponent,
+    PorCapitalComponent,
+    PorRegionComponent
   ]
 })
 export class PaisModule { }

@@ -1,1 +1,24 @@
-
+<h1>País: {{pais.name.common}}</h1>
+<div class="row">
+  <div class="col-4">
+    <h2>Bandera</h2>
+    <img [src]="pais.flags.png" [alt]="pais.name.common">
+  </div>
+  <div class="col-1"></div>
+  <div class="col-7">
+    <h2>Información</h2>
+    <ul class="list-group">
+      <li class="list-group-item"><b>Población:</b> {{pais.population}}</li>
+      <li class="list-group-item"><b>Código CCA2:</b> {{pais.cca2}}</li>
+      <li class="list-group-item"><b>Código CIOC:</b> {{pais.cioc}}</li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+    <div class="col-12">
+      <h2>Traducciones</h2>
+      <div class="container-fluid p-0">
+        <span class="badge bg-primary mx-1" *ngFor="let traduccion of translations">{{traduccion.common}}</span>
+      </div>
+    </div>
+  </div>

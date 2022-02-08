@@ -1,8 +1,21 @@
 <h2>Por País</h2>
 <hr>
-<input type="text" class="form-control" placeholder="Buscar ..." [(ngModel)]="pais" (keyup.enter)="buscarPais()">
+<input type="text" class="form-control" placeholder="Buscar ..." [(ngModel)]="pais" (keyup)="obtenerPaises()"
+  (keyup.enter)="mostrarPaises()">
+<div class="row" *ngIf="paises.length > 0;">
+  <div class="col">
+    <ul class="list-group">
+      <a class="list-group-item list-group-item-action text-primary" aria-current="true"
+        *ngFor="let pais of paises;" href="pais/{{pais.cioc}}">{{pais.name.common}}</a>
+
+      <a class="list-group-item list-group-item-action text-primary" *ngIf="pais !== ''" aria-current="true"
+        (click)="mostrarPaises()">Buscar todos los paises que tengan por {{pais}}...
+      </a>
+    </ul>
+  </div>
+</div>
 <hr>
-<div *ngIf="paises.length > 0; else standard" class="row">
+<div *ngIf="ultPaises.length > 0; else standard" class="row">
 
   <div class="col">
 
@@ -27,32 +40,29 @@
       </thead>
       <tbody>
 
-        <tr *ngFor="let pais of paises; let i = index"
+        <tr *ngFor="let pais of ultPaises; let i = index" class="animate__animated animate__fadeIn animate__faster">
 
-            class="animate__animated animate__fadeIn animate__faster">
+          <td> {{ i + 1 }} </td>
 
-            <td> {{ i + 1 }} </td>
+          <td>
 
-            <td>
+            <img class="small-flag img-fluid" [src]="pais.flags.svg">
 
-                <img class="small-flag img-fluid" [src]="pais.flags.svg"  >
+          </td>
 
-            </td>
+          <td> {{ pais.capital }}, {{pais.name.common || pais.name.official }}</td>
 
-            <td> {{ pais.capital }}, {{pais.name.common || pais.name.official }}</td>
+          <td>{{ pais.population | number }}</td>
 
-            <td>{{ pais.population | number }}</td>
+          <td>
 
-            <td>
+            <a href="pais/{{pais.cioc}}">Ver...</a>
 
-                <!-- <a [routerLink]="['/pais', pais.cioc]">Ver...</a> -->
-                <a href="#">Ver...</a>
-
-            </td>
+          </td>
 
         </tr>
 
-    </tbody>
+      </tbody>
 
     </table>
   </div>
@@ -62,5 +72,5 @@
     Resultados Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae doloremque error ratione, voluptatem,
     ipsam aliquid atque molestiae esse assumenda eaque iste repellat animi nihil odit? Dignissimos dolores iste
     repellendus quidem?
-  </h3>  
+  </h3>
 </ng-template>

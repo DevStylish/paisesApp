@@ -1,0 +1,41 @@
+<h2 *ngIf="region === '';else h1Region">Buscar por region </h2>
+<ng-template #h1Region>
+  <h2>Buscar por region {{region}}</h2>
+</ng-template>
+<hr>
+<h4>Seleccione la region</h4>
+<div class="container-fluid p-0">
+  <button type="button" class="btn btn-outline-primary me-3" (click)="buscarPorRegion('Africa')">Africa</button>
+  <button type="button" class="btn btn-outline-primary me-3" (click)="buscarPorRegion('Americas')">Americas</button>
+  <button type="button" class="btn btn-outline-primary me-3" (click)="buscarPorRegion('Asia')">Asia</button>
+  <button type="button" class="btn btn-outline-primary me-3" (click)="buscarPorRegion('Europe')">Europe</button>
+  <button type="button" class="btn btn-outline-primary me-3" (click)="buscarPorRegion('Oceania')">Oceania</button>
+</div>
+<div class="row" *ngIf="paises.length != 0">
+  <div class="col">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Bandera</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Poblacion</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let pais of paises;let i = index">
+        <tr>
+          <td> {{ i + 1 }} </td>
+          <td>
+            <img class="small-flag img-fluid" style="height: 50px; width: 100px;" [src]="pais.flags.svg">
+          </td>
+          <td> {{ pais.capital }}, {{pais.name.common || pais.name.official }}</td>
+          <td>{{ pais.population | number }}</td>
+          <td>
+            <a href="pais/{{pais.cioc}}">Ver...</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
